@@ -32,8 +32,8 @@ dependencies {
 
 
 version = "0.0.1"
-def siteUrl = 'https://github.com/Javen205/JPay'    // project homepage
-def gitUrl = 'https://github.com/Javen205/JPay.git' // project git
+def siteUrl = 'https://github.com/xuetenglong/Wantgo'    // project homepage
+def gitUrl = 'https://github.com/xuetenglong/Wantgo.git' // project git
 // 根节点添加
 group = "com.xue.library"
 
@@ -84,4 +84,22 @@ install {
         }
     }
 }
+
+//配置bintray参数
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty('bintrayUser')
+    key = properties.getProperty('bintrayApiKey')
+    configurations = ['archives']
+    pkg {
+        repo = "wantgo"               //跟上面创建的Maven仓库名字保持一致
+        name = "Wantgo"                //发布到JCenter上的项目名字
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        licenses = ["Apache-2.0"]
+        publish = true
+    }
+}
+
 
